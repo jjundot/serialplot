@@ -31,7 +31,7 @@ TARGET = serialplot
 TEMPLATE = app
 
 CONFIG += qwt
-# LIBS += -lqwt # enable this line if qwt pri files aren't installed
+LIBS += -lqwt # enable this line if qwt pri files aren't installed
 
 DEFINES += PROGRAM_NAME="\\\"serialplot\\\""
 
@@ -191,4 +191,32 @@ RESOURCES += misc/icons.qrc
 
 win32 {
     RESOURCES += misc/winicons.qrc
+
+    win32:CONFIG(release, debug|release): LIBS += -LE:/QT/5.15.0/mingw81_32/lib/ -lqwt
+    else:win32:CONFIG(debug, debug|release): LIBS += -LE:/QT/5.15.0/mingw81_32/lib/ -lqwtd
+    else:unix: LIBS += -LE:/QT/5.15.0/mingw81_32/lib/ -lqwt
+
+    INCLUDEPATH += E:/QT/5.15.0/mingw81_32/include/Qwt
+    DEPENDPATH += E:/QT/5.15.0/mingw81_32/include/Qwt
+
+    win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += E:/QT/5.15.0/mingw81_32/lib/libqwt.a
+    else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += E:/QT/5.15.0/mingw81_32/lib/libqwtd.a
+    else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += E:/QT/5.15.0/mingw81_32/lib/qwt.lib
+    else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += E:/QT/5.15.0/mingw81_32/lib/qwtd.lib
+    else:unix: PRE_TARGETDEPS += E:/QT/5.15.0/mingw81_32/lib/libqwt.a
+}
+
+win64 {
+    win64:CONFIG(release, debug|release): LIBS += -LE:/QT/5.15.0/mingw81_64/lib/ -lqwt
+    else:win32:CONFIG(debug, debug|release): LIBS += -LE:/QT/5.15.0/mingw81_64/lib/ -lqwtd
+    else:unix: LIBS += -LE:/QT/5.15.0/mingw81_64/lib/ -lqwt
+
+    INCLUDEPATH += E:/QT/5.15.0/mingw81_64/include/Qwt
+    DEPENDPATH += E:/QT/5.15.0/mingw81_64/include/Qwt
+
+    win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += E:/QT/5.15.0/mingw81_64/lib/libqwt.a
+    else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += E:/QT/5.15.0/mingw81_64/lib/libqwtd.a
+    else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += E:/QT/5.15.0/mingw81_64/lib/qwt.lib
+    else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += E:/QT/5.15.0/mingw81_64/lib/qwtd.lib
+    else:unix: PRE_TARGETDEPS += E:/QT/5.15.0/mingw81_64/lib/libqwt.a
 }
