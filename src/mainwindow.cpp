@@ -73,7 +73,7 @@ MainWindow::MainWindow(QWidget *parent) :
     dataFormatPanel(&serialPort),
     recordPanel(&stream),
     textView(&stream),
-    updateCheckDialog(this),
+    //updateCheckDialog(this),
     bpsLabel(&portControl, &dataFormatPanel, this)
 {
     ui->setupUi(this);
@@ -140,8 +140,8 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(ui->actionHelpAbout, &QAction::triggered,
               &aboutDialog, &QWidget::show);
 
-    QObject::connect(ui->actionCheckUpdate, &QAction::triggered,
-              &updateCheckDialog, &QWidget::show);
+   // QObject::connect(ui->actionCheckUpdate, &QAction::triggered,
+       //       &updateCheckDialog, &QWidget::show);
 
     QObject::connect(ui->actionReportBug, &QAction::triggered,
                      [](){QDesktopServices::openUrl(QUrl(BUG_REPORT_URL));});
@@ -516,7 +516,7 @@ void MainWindow::saveAllSettings(QSettings* settings)
     commandPanel.saveSettings(settings);
     recordPanel.saveSettings(settings);
     textView.saveSettings(settings);
-    updateCheckDialog.saveSettings(settings);
+    //updateCheckDialog.saveSettings(settings);
 }
 
 void MainWindow::loadAllSettings(QSettings* settings)
@@ -530,7 +530,7 @@ void MainWindow::loadAllSettings(QSettings* settings)
     commandPanel.loadSettings(settings);
     recordPanel.loadSettings(settings);
     textView.loadSettings(settings);
-    updateCheckDialog.loadSettings(settings);
+    //updateCheckDialog.loadSettings(settings);
 }
 
 void MainWindow::saveMWSettings(QSettings* settings)

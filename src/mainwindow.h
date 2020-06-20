@@ -91,7 +91,7 @@ private:
     PlotControlPanel plotControlPanel;
     PlotMenu plotMenu;
     DataTextView textView;
-    UpdateCheckDialog updateCheckDialog;
+    //UpdateCheckDialog updateCheckDialog;
     BPSLabel bpsLabel;
 
     void handleCommandLineOptions(const QCoreApplication &app);
