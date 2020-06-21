@@ -181,10 +181,6 @@
    <property name="checked">
     <bool>false</bool>
    </property>
-   <property name="icon">
-    <iconset theme="player_pause">
-     <normaloff>.</normaloff>.</iconset>
-   </property>
    <property name="text">
     <string>Pause</string>
    </property>
@@ -196,10 +192,6 @@
    </property>
   </action>
   <action name="actionClear">
-   <property name="icon">
-    <iconset theme="editclear">
-     <normaloff>.</normaloff>.</iconset>
-   </property>
    <property name="text">
     <string>Clear</string>
    </property>
