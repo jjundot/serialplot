@@ -660,3 +660,9 @@ void MainWindow::handleCommandLineOptions(const QCoreApplication &app)
         portControl.openPort();
     }
 }
+
+void MainWindow::on_Log_Clear_clicked()
+{
+    if (ui != NULL)
+        ui->ptLog->clear();
+}

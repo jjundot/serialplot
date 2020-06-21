@@ -128,6 +128,7 @@ private slots:
     void onExportCsv();
     void onSaveSettings();
     void onLoadSettings();
+    void on_Log_Clear_clicked();
 };
 
 #endif // MAINWINDOW_H
