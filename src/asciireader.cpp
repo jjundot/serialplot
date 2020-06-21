@@ -135,14 +135,23 @@ unsigned AsciiReader::readData()
 
 SamplePack* AsciiReader::parseLine(const QString& line) const
 {
-    auto separatedValues = line.split(delimiter, QString::SkipEmptyParts);
+    QString parse_line = line;
+
+    if(parse_line.left(6) != "[PLT]:")
+    {
+        return nullptr;
+    }
+
+    parse_line = parse_line.remove(0, 6);
+
+    auto separatedValues = parse_line.split(delimiter, QString::SkipEmptyParts);
     unsigned numComingChannels = separatedValues.length();
 
     // check number of channels (skipped if auto num channels is enabled)
     if ((!numComingChannels) || (!autoNumOfChannels && numComingChannels != _numChannels))
     {
         qWarning() << "Line parsing error: invalid number of channels!";
-        qWarning() << "Read line: " << line;
+        qWarning() << "Read line: " << parse_line;
         return nullptr;
     }
 
@@ -155,7 +164,7 @@ SamplePack* AsciiReader::parseLine(const QString& line) const
         if (!ok)
         {
             qWarning() << "Data parsing error for channel: " << ci;
-            qWarning() << "Read line: " << line;
+            qWarning() << "Read line: " << parse_line;
 
             delete samples;
             return nullptr;
