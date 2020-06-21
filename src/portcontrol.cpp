@@ -168,7 +168,7 @@ PortControl::PortControl(QSerialPort* port, QWidget* parent) :
 
     loadPortList();
     loadBaudRateList();
-    ui->cbBaudRate->setCurrentIndex(ui->cbBaudRate->findText("9600"));
+    ui->cbBaudRate->setCurrentIndex(ui->cbBaudRate->findText("115200"));
 }
 
 PortControl::~PortControl()
