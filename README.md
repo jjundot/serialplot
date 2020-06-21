@@ -23,7 +23,7 @@ Small and simple software for plotting data from serial port in realtime, Forked
         printf("[PLT]: %d, %d, 3, 4, 5, 6\r\n", plt_test++, plt_test_1--); // Will be plotted in serialplot.
         delay(10);
         printf("normal debug info 1\r\n"); // Will be ignored by serial plot
-}
+	}
     ```
     
 * Synchronized multi channel plotting
