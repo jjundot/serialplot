@@ -26,14 +26,20 @@
    </item>
    <item>
     <widget class="QCheckBox" name="cbPeriodic">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="toolTip">
       <string>Updates will be checked only once a day at first start of the application</string>
      </property>
      <property name="text">
       <string>Check updates periodically</string>
      </property>
-     <property name="checked">
+     <property name="checkable">
       <bool>true</bool>
+     </property>
+     <property name="checked">
+      <bool>false</bool>
      </property>
     </widget>
    </item>
