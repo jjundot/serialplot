@@ -1,16 +1,35 @@
 # SerialPlot
 
-Small and simple software for plotting data from serial port in realtime.
+Small and simple software for plotting data from serial port in realtime, Forked from  https://bitbucket.org/hyOzd/serialplot/downloads and made some small optimizations.
 
-![SerialPlot v0.4 Screenshot](http://i.imgur.com/Wb53LRt.png)
+
+
+![1](https://i.loli.net/2020/06/21/uOmyF8svKLcIZ2o.png)
 
 ## Features
 * Reading data from serial port
+
 * Binary data formats (u)int8, (u)int16, (u)int32, float
+
 * User defined frame format for robust operation
-* ASCII input (Comma Separated Values)
+
+* ASCII input (Comma Separated Values), Start with  `[PLT]:`
+    ```c
+    uint8_t plt_test = 0, plt_test_1 = 0;
+    
+    while(1)
+    {
+        printf("normal debug info 0\r\n"); // Will be ignored by serial plot
+        printf("[PLT]: %d, %d, 3, 4, 5, 6\r\n", plt_test++, plt_test_1--); // Will be plotted in serialplot.
+        delay(10);
+        printf("normal debug info 1\r\n"); // Will be ignored by serial plot
+}
+    ```
+    
 * Synchronized multi channel plotting
+
 * Define and send commands to the device in ASCII or binary format
+
 * Take snapshots of the current waveform and save to CSV file
 
 See
