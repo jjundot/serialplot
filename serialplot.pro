@@ -29,13 +29,13 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = serialplot
 TEMPLATE = app
-
+RC_ICONS = ico/wave.ico
 CONFIG += qwt
 LIBS += -lqwt # enable this line if qwt pri files aren't installed
 
 DEFINES += PROGRAM_NAME="\\\"serialplot\\\""
 
-DEFINES += VERSION_MAJOR=10 VERSION_MINOR=0 VERSION_PATCH=0 VERSION_STRING=\\\"10.0.0\\\"
+DEFINES += VERSION_MAJOR=10 VERSION_MINOR=0 VERSION_PATCH=0 VERSION_STRING=\\\"11.1.0\\\"
 
 SOURCES += \
     src/main.cpp \
@@ -192,31 +192,32 @@ RESOURCES += misc/icons.qrc
 win32 {
     RESOURCES += misc/winicons.qrc
 
-    win32:CONFIG(release, debug|release): LIBS += -LE:/QT/5.15.0/mingw81_32/lib/ -lqwt
-    else:win32:CONFIG(debug, debug|release): LIBS += -LE:/QT/5.15.0/mingw81_32/lib/ -lqwtd
-    else:unix: LIBS += -LE:/QT/5.15.0/mingw81_32/lib/ -lqwt
+    contains(QT_ARCH, i386) {
+        win32:CONFIG(release, debug|release): LIBS += -LE:/QT/5.15.0/mingw81_32/lib/ -lqwt
+        else:win32:CONFIG(debug, debug|release): LIBS += -LE:/QT/5.15.0/mingw81_32/lib/ -lqwtd
+        else:unix: LIBS += -LE:/QT/5.15.0/mingw81_32/lib/ -lqwt
 
-    INCLUDEPATH += E:/QT/5.15.0/mingw81_32/include/Qwt
-    DEPENDPATH += E:/QT/5.15.0/mingw81_32/include/Qwt
+        INCLUDEPATH += E:/QT/5.15.0/mingw81_32/include/Qwt
+        DEPENDPATH += E:/QT/5.15.0/mingw81_32/include/Qwt
 
-    win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += E:/QT/5.15.0/mingw81_32/lib/libqwt.a
-    else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += E:/QT/5.15.0/mingw81_32/lib/libqwtd.a
-    else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += E:/QT/5.15.0/mingw81_32/lib/qwt.lib
-    else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += E:/QT/5.15.0/mingw81_32/lib/qwtd.lib
-    else:unix: PRE_TARGETDEPS += E:/QT/5.15.0/mingw81_32/lib/libqwt.a
+        win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += E:/QT/5.15.0/mingw81_32/lib/libqwt.a
+        else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += E:/QT/5.15.0/mingw81_32/lib/libqwtd.a
+        else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += E:/QT/5.15.0/mingw81_32/lib/qwt.lib
+        else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += E:/QT/5.15.0/mingw81_32/lib/qwtd.lib
+        else:unix: PRE_TARGETDEPS += E:/QT/5.15.0/mingw81_32/lib/libqwt.a
+    } else {
+        win32:CONFIG(release, debug|release): LIBS += -LE:/QT/5.15.0/mingw81_64/lib/ -lqwt
+        else:win32:CONFIG(debug, debug|release): LIBS += -LE:/QT/5.15.0/mingw81_64/lib/ -lqwtd
+        else:unix: LIBS += -LE:/QT/5.15.0/mingw81_64/lib/ -lqwt
+
+        INCLUDEPATH += E:/QT/5.15.0/mingw81_64/include/Qwt
+        DEPENDPATH += E:/QT/5.15.0/mingw81_64/include/Qwt
+
+        win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += E:/QT/5.15.0/mingw81_64/lib/libqwt.a
+        else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += E:/QT/5.15.0/mingw81_64/lib/libqwtd.a
+        else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += E:/QT/5.15.0/mingw81_64/lib/qwt.lib
+        else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += E:/QT/5.15.0/mingw81_64/lib/qwtd.lib
+        else:unix: PRE_TARGETDEPS += E:/QT/5.15.0/mingw81_64/lib/libqwt.a
+    }
 }
 
-win64 {
-    win64:CONFIG(release, debug|release): LIBS += -LE:/QT/5.15.0/mingw81_64/lib/ -lqwt
-    else:win32:CONFIG(debug, debug|release): LIBS += -LE:/QT/5.15.0/mingw81_64/lib/ -lqwtd
-    else:unix: LIBS += -LE:/QT/5.15.0/mingw81_64/lib/ -lqwt
-
-    INCLUDEPATH += E:/QT/5.15.0/mingw81_64/include/Qwt
-    DEPENDPATH += E:/QT/5.15.0/mingw81_64/include/Qwt
-
-    win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += E:/QT/5.15.0/mingw81_64/lib/libqwt.a
-    else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += E:/QT/5.15.0/mingw81_64/lib/libqwtd.a
-    else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += E:/QT/5.15.0/mingw81_64/lib/qwt.lib
-    else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += E:/QT/5.15.0/mingw81_64/lib/qwtd.lib
-    else:unix: PRE_TARGETDEPS += E:/QT/5.15.0/mingw81_64/lib/libqwt.a
-}
